@@ -5,15 +5,17 @@ import {MatInputModule, MatCardModule, MatButtonModule, MatToolbarModule} from '
 
 
 import { AppComponent } from './app.component';
-import {PostCreateComponent} from './posts/post-create/post-create.component';
-import {HeaderComponent} from './header/header.component';
+import {PostCreateComponent} from './components/posts/post-create/post-create.component';
+import {PostListComponent} from './components/posts/post-list/post-list.component';
+import {HeaderComponent} from './components/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostCreateComponent,
-    HeaderComponent
+    PostListComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
