@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { PostsService } from '../posts.service';
 
-import {Post} from '../post.model';
 @Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',
@@ -12,16 +12,17 @@ export class PostCreateComponent {
 // here is the component state, you dont declare it with var, let, or const
 enteredTitle = '';
 enteredContent = '';
-@Output() postCreated = new EventEmitter<Post>();
+
+
+constructor(public postsService: PostsService) {}
+
+
 
   onAddPost(form: NgForm) {
     if (form.invalid) {
       return;
     }
-    const post: Post = {
-      title: form.value.title,
-      content: form.value.content
-    };
-    this.postCreated.emit(post);
+    this.postsService.addPost(form.value.title, form.value.content);
+    form.resetForm();
   }
 }

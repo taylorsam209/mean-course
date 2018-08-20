@@ -1,6 +1,8 @@
-import {Component, Input} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Subscription} from 'rxjs';
 
 import {Post} from '../post.model';
+import {PostsService} from '../posts.service';
 
 @Component({
   selector: 'app-post-list',
@@ -8,14 +10,23 @@ import {Post} from '../post.model';
   styleUrls: ['./post-list.component.css']
 })
 
-export class PostListComponent {
-  // posts = [
-  //   {title: 'First Post', content: 'This first post\s content'},
-  //   {title: 'Second Post', content: 'This Second post\s content'},
-  //   {title: 'Third Post', content: 'This Third post\s content'},
-  // ];
+export class PostListComponent implements OnInit, OnDestroy {
 
- @Input() posts: Post[] = [];
+posts: Post[] = [];
+private postsSub: Subscription;
 
+// Constructor is simply a function that is called whenever angular creates a new instance of this component
+constructor(public postsService: PostsService) {}
+
+  ngOnInit() {
+    this.posts = this.postsService.getPosts();
+    this.postsService.getPostUpdateListener().subscribe((posts: Post[]) => {
+      this.posts = posts;
+    });
+  }
+
+  ngOnDestroy() {
+    this.postsSub.unsubscribe();
+  }
 
 }
