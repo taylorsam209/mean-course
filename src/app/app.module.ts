@@ -16,13 +16,15 @@ import { AppComponent } from './app.component';
 import { PostCreateComponent } from './components/posts/post-create/post-create.component';
 import { PostListComponent } from './components/posts/post-list/post-list.component';
 import { HeaderComponent } from './components/header/header.component';
+import {DataBindingComponent} from './components/data-binding/data-binding.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostCreateComponent,
     PostListComponent,
-    HeaderComponent
+    HeaderComponent,
+    DataBindingComponent
   ],
   imports: [
     BrowserModule,
