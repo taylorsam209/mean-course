@@ -1,4 +1,16 @@
 <h1>Data Binding Component</h1>
 {{interpolationString}}
 <br>
-<input type='number' name='propertyBinding' [value]='propertyBindingValue' style="margin: 10px"/>
+<input [type]='number' [name]='nameBinding' [value]='propertyBindingValue' style="margin: 10px"/>
+<p>-----------------------------------------------------------</p>
+<p>One Way Binding (using Events) (View to => Component)</p>
+<input type='button' name = 'btnClickMe' value='Click Me' style='height: 50px; width:200px' (click)="eventFired($event)"/>
+<p>--------------------------------------------</p>
+<p>Two way binding using ngModel</p>
+<input type='text' [(ngModel)]='name' />
+<p>This is name variable: {{name}}</p>
+
+<p>---------------------------------------------</p>
+<p>Two way binding using Events</p>
+<input type='text' (input)="nameVarForEvents =$event.target.value" />
+<p>This is event two way binding , with event name: {{nameVarForEvents}}</p>
